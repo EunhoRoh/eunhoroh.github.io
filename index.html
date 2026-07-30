@@ -270,12 +270,12 @@ footer{margin-top:80px; padding-top:22px; border-top:1px solid var(--line); font
     <h2>신규 서비스 확장 — 기획부터 운영 저장소 통합까지</h2>
     <span class="meta">2026 상반기 – 현재 · 비공개 프로젝트 · 격리 테스트 환경 상시 구동</span>
   </div>
-  <p class="sec-sub">미공개 건이라 제품 상세는 밝힐 수 없지만, 기획(사업 판단에 따른 방향 전환 2회) → 독립 풀스택 프로토타입 → 기존 운영 서비스의 확장으로 이어진 구현입니다. 상세는 면접에서 말씀드릴 수 있습니다.</p>
+  <p class="sec-sub">미공개 건이라 제품 상세는 밝힐 수 없지만, 기획(사업 판단에 따른 방향 전환 2회) → 독립 풀스택 프로토타입 → 사내 신규 도메인 구현으로 이어진 프로젝트입니다. 상세는 면접에서 말씀드릴 수 있습니다.</p>
   <ul>
     <li><b>레거시 모놀리스에 "부수지 않고 얹기"</b> — 신규 도메인을 격리된 앱으로 신설하고 개발 루프에서 무거운 임포트를 스텁으로 차단. 기존 코드 수정 3곳, 타 팀 저장소 컨벤션 100% 준수(신규 정적분석 이슈 0건).</li>
     <li><b>민감 개인 기록의 프라이버시를 서버 계약으로</b> — 공개범위 3단계(전체/요약/비공개)를 직렬화 원천에서 강제하고 소유권 위반은 404로 응답. 규칙은 회귀 테스트로 고정.</li>
     <li><b>실패 모드까지 설계</b> — 비동기 파이프라인의 확정 시점에 후속 속성을 붙이는 fire-and-forget 훅. 기본값이 보호적이라 훅이 실패해도 안전한 쪽으로 수렴.</li>
-    <li><b>격리 테스트 스택 구축·상시 구동</b> — 운영과 완전 분리된 테스트 환경(DB·큐·프로세스 분리)에 배포해 자동 복구까지 실증. 운영 병합 대기.</li>
+    <li><b>격리 테스트 스택 구축·상시 구동</b> — 운영과 완전 분리된 테스트 환경(DB·큐·프로세스 분리)에 배포해 자동 복구까지 실증.</li>
   </ul>
 </section>
 
@@ -308,7 +308,7 @@ footer{margin-top:80px; padding-top:22px; border-top:1px solid var(--line); font
     <div class="stack-row"><span class="k">백엔드</span><span>Python · Django REST Framework · Celery / Spring Boot 4.x + JPA (개인 프로젝트 Sealo 실구축)</span></div>
     <div class="stack-row"><span class="k">프론트·모바일</span><span>Vue.js 3 · Nuxt.js · React / Flutter · React Native(Expo, TypeScript) · Firebase</span></div>
     <div class="stack-row"><span class="k">데이터베이스</span><span>PostgreSQL · MySQL · MS SQL · Firestore — 슬로우쿼리 진단, 복합 인덱스 설계</span></div>
-    <div class="stack-row"><span class="k">QA·자동화</span><span>Playwright · Flutter integration_test · GitHub Actions(Flutter CI) · python-pptx 보고서 자동화</span></div>
+    <div class="stack-row"><span class="k">QA·자동화</span><span>Flutter integration_test E2E(단독 구축) · Playwright(초기 틀) · python-pptx 보고서 자동화</span></div>
     <div class="stack-row"><span class="k">인프라·운영</span><span>Docker · Nginx · Redis · Cloudflare · NCP — 헬스체크 봇 설계·운영, 장애 대응</span></div>
     <div class="stack-row"><span class="k">AI/ML</span><span>Azure Custom Vision(실서비스 연동) · OpenAI API·프롬프트 설계 · TensorFlow/Keras(연구) · SLM 서비스 통합</span></div>
   </div>
