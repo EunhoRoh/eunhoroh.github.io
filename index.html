@@ -1,4 +1,10 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>노은호 — 개발 포트폴리오</title>
+<meta name="description" content="노은호 포트폴리오 — 요구사항부터 DB·API·화면·서버까지 직접 만들고 신규 사업 기획까지 맡아 본 풀스택 개발자. Seamspace Family, Atrion, SLM 통합, QA 자동화.">
 <style>
 :root{
   --ink:#16283e; --body:#33445c; --muted:#5c6b7e; --faint:#8b99ab;
@@ -8,7 +14,7 @@
   --ok:#0e8a5f;
 }
 @media (prefers-color-scheme: dark){
-  :root{
+  :root:not([data-theme="light"]){
     --ink:#e8eef6; --body:#c3cedd; --muted:#93a2b6; --faint:#6b7a8f;
     --bg:#0f1722; --panel:#182434; --panel-line:#243449; --line:#22303f;
     --accent:#5a9bf0; --accent-ink:#7fb2f5; --accent-soft:#1a2c45;
@@ -21,12 +27,6 @@
   --accent:#5a9bf0; --accent-ink:#7fb2f5; --accent-soft:#1a2c45;
   --chip-bg:#1d2b3d; --chip-ink:#a9bcd6; --ok:#3dbd8c;
 }
-:root[data-theme="light"]{
-  --ink:#16283e; --body:#33445c; --muted:#5c6b7e; --faint:#8b99ab;
-  --bg:#ffffff; --panel:#f1f5fa; --panel-line:#dde6f0; --line:#e4eaf2;
-  --accent:#1d6fe0; --accent-ink:#155ec4; --accent-soft:#e8f1fd;
-  --chip-bg:#eef3f9; --chip-ink:#3d5170; --ok:#0e8a5f;
-}
 *{box-sizing:border-box}
 html{-webkit-print-color-adjust:exact; print-color-adjust:exact}
 body{
@@ -38,12 +38,13 @@ body{
 a{color:var(--accent-ink); text-decoration:none}
 a:hover{text-decoration:underline}
 a:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:2px}
+code{font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.92em; background:var(--chip-bg); padding:1px 5px; border-radius:4px}
 
-/* ---------- hero ---------- */
 .hero .eyebrow{font-size:12.5px; font-weight:700; letter-spacing:.14em; color:var(--accent-ink); text-transform:uppercase}
 h1{font-size:42px; font-weight:800; letter-spacing:-0.035em; color:var(--ink); margin:6px 0 4px; line-height:1.2; text-wrap:balance}
 .hero .role{font-size:18px; font-weight:600; color:var(--ink); letter-spacing:-0.015em}
-.hero .intro{max-width:640px; margin-top:14px}
+.hero .intro{max-width:680px; margin-top:14px}
+.hero .intro b{color:var(--ink)}
 .contact{display:flex; flex-wrap:wrap; gap:8px 22px; margin-top:18px; font-size:14px; color:var(--muted)}
 .contact b{color:var(--ink); font-weight:600}
 .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:34px}
@@ -53,28 +54,29 @@ h1{font-size:42px; font-weight:800; letter-spacing:-0.035em; color:var(--ink); m
 .stat .l{font-size:12.5px; color:var(--muted); margin-top:3px; line-height:1.45}
 @media (max-width:720px){ .stats{grid-template-columns:repeat(2,1fr)} h1{font-size:34px} }
 
-/* ---------- sections ---------- */
 section{margin-top:72px}
 .sec-head{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; border-bottom:2px solid var(--ink); padding-bottom:10px; margin-bottom:8px}
 h2{font-size:24px; font-weight:800; letter-spacing:-0.025em; color:var(--ink); margin:0; text-wrap:balance}
 .sec-head .meta{font-size:13.5px; color:var(--muted); font-variant-numeric:tabular-nums}
-.sec-sub{font-size:14.5px; color:var(--muted); margin:10px 0 0; max-width:700px}
+.sec-sub{font-size:14.5px; color:var(--muted); margin:10px 0 0; max-width:720px}
+.sec-sub b{color:var(--ink)}
 .roleline{margin-top:16px; padding:13px 16px; background:var(--accent-soft); border-radius:8px; font-size:14.5px; color:var(--ink)}
 .roleline b{font-weight:700}
 .chips{display:flex; flex-wrap:wrap; gap:7px; margin-top:14px}
 .chip{font-size:12.5px; font-weight:600; color:var(--chip-ink); background:var(--chip-bg); border:1px solid var(--panel-line); border-radius:999px; padding:3px 11px; letter-spacing:0}
+.live{display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:700; color:var(--ok); background:transparent; border:1px solid var(--ok); border-radius:999px; padding:2px 10px; vertical-align:middle}
+.live::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--ok)}
 
-/* ---------- screenshots ---------- */
 .shots{margin-top:26px}
 .shot{border:1px solid var(--line); border-radius:10px; overflow:hidden; background:#fff}
 .shot img{display:block; width:100%; height:auto}
 .shot-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:14px}
-@media (max-width:720px){ .shot-grid{grid-template-columns:1fr} }
+.shot-grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:14px}
+@media (max-width:720px){ .shot-grid{grid-template-columns:1fr} .shot-grid3{grid-template-columns:1fr 1fr} }
 .cap{font-size:12.5px; color:var(--faint); margin-top:7px; line-height:1.5}
 :root[data-theme="dark"] .shot img{filter:brightness(.94)}
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .shot img{filter:brightness(.94)} }
 
-/* ---------- decision stories ---------- */
 h3{font-size:16.5px; font-weight:700; color:var(--ink); letter-spacing:-0.015em; margin:0 0 6px}
 .stories{display:grid; gap:14px; margin-top:26px}
 .story{background:var(--panel); border:1px solid var(--panel-line); border-radius:10px; padding:20px 22px}
@@ -83,16 +85,17 @@ h3{font-size:16.5px; font-weight:700; color:var(--ink); letter-spacing:-0.015em;
 .story .flow{margin-top:8px; font-size:14.5px}
 .story .flow b{color:var(--ink); font-weight:700}
 .story .result{margin-top:10px; font-size:14.5px; font-weight:600; color:var(--ok)}
+.story .result span{font-weight:400; color:var(--muted)}
 ul{margin:12px 0 0; padding-left:20px}
 li{margin-top:6px}
 li::marker{color:var(--accent)}
 li b{color:var(--ink); font-weight:700}
 
-/* ---------- cards / misc ---------- */
 .cards2{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:24px}
 @media (max-width:720px){ .cards2{grid-template-columns:1fr} }
 .card{border:1px solid var(--line); border-radius:10px; padding:20px 22px}
 .card .period{font-size:12.5px; color:var(--faint); font-variant-numeric:tabular-nums}
+.card p{margin:8px 0 0; font-size:14.5px}
 .stack-table{margin-top:22px; display:grid; gap:0; border-top:1px solid var(--line)}
 .stack-row{display:grid; grid-template-columns:150px 1fr; gap:16px; padding:11px 2px; border-bottom:1px solid var(--line); font-size:14.5px}
 .stack-row .k{font-weight:700; color:var(--ink)}
@@ -100,7 +103,6 @@ li b{color:var(--ink); font-weight:700}
 .note{font-size:13px; color:var(--faint); margin-top:14px}
 footer{margin-top:80px; padding-top:22px; border-top:1px solid var(--line); font-size:13.5px; color:var(--muted); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px}
 
-/* ---------- print ---------- */
 @media print{
   body{font-size:12px}
   .wrap{max-width:100%; padding:0}
@@ -109,30 +111,75 @@ footer{margin-top:80px; padding-top:22px; border-top:1px solid var(--line); font
   h1{font-size:30px}
   h2{font-size:19px}
   .shot,.story,.stat,.card{break-inside:avoid}
+  .shot-grid3{grid-template-columns:repeat(3,1fr)!important; gap:8px}
+  .shot-grid{grid-template-columns:1fr 1fr!important}
+  .stats{grid-template-columns:repeat(4,1fr)!important}
+  .cards2{grid-template-columns:1fr 1fr!important}
   a{color:var(--body)}
   footer{margin-top:36px}
 }
 </style>
-
+</head>
+<body>
 <div class="wrap">
 
 <header class="hero">
-  <div class="eyebrow">Portfolio · Full-stack / QA Automation / Reliability</div>
+  <div class="eyebrow">Portfolio · Full-stack / AI Service Integration / QA Automation</div>
   <h1>노은호 <span style="font-weight:600; font-size:24px; color:var(--muted)">ROH EUNHO</span></h1>
-  <div class="role">풀스택 개발 · QA 자동화 · 운영 신뢰성 엔지니어링</div>
-  <p class="intro">건축물 품질관리 시스템의 모니터링·보고서 영역을 풀스택으로 단독 구축하고, 운영 장애를 "사용자 문의로 아는 것"에서 "30분 내 자동 탐지"로 바꿔온 개발자입니다. 기능을 만드는 것보다 <b style="color:var(--ink)">왜 그렇게 설계했는지</b>를 설명할 수 있는 개발을 지향합니다.</p>
+  <div class="role">풀스택 개발(웹·앱) · AI 서비스 통합 · QA 자동화</div>
+  <p class="intro">요구사항을 받으면 DB 설계부터 API, 화면, 서버 배포까지 직접 만들어 온 개발자입니다. 회사에서 신규 사업(가족 앱)의 리서치와 기획 보고서부터 프로토타입, 운영 저장소 통합, 부모앱 React 재구현까지 맡았고, 외주 품질관리 시스템을 풀스택으로 혼자 만들었으며, 학생앱 QA 자동화와 SLM 위기판정 통합을 담당했습니다. 기능을 만드는 것보다 <b>왜 그렇게 설계했는지</b>를 설명할 수 있는 개발을 지향합니다.</p>
   <div class="contact">
     <span><b>Email</b> deu04189@gmail.com</span>
     <span><b>GitHub</b> <a href="https://github.com/EunhoRoh">github.com/EunhoRoh</a></span>
-    <span><b>소속</b> 테바소프트 SW팀 (2025.01 – 현재)</span>
+    <span><b>경력</b> 테바소프트 SW팀 (2025.01 – 2026.10)</span>
   </div>
   <div class="stats">
+    <div class="stat"><div class="n">이틀</div><div class="l">Flutter 부모앱 58파일을 React+TS로 전 화면 이식</div></div>
+    <div class="stat"><div class="n">882건</div><div class="l">학생앱 E2E·API 자동화 단독 구축 (TC 1,511건 워크북)</div></div>
     <div class="stat"><div class="n">30% <small>→</small> 0%</div><div class="l">PPT 보고서 생성 실패율 (생성시간 10초→3초)</div></div>
-    <div class="stat"><div class="n">34개</div><div class="l">모니터링 차트 UI+API (신규 13 · 리디자인 21)</div></div>
-    <div class="stat"><div class="n">405건</div><div class="l">E2E 자동화 테스트 단독 구축 (TC 1,005건 워크북 운영)</div></div>
-    <div class="stat"><div class="n">99.45%</div><div class="l">CNN-LSTM 심방세동 탐지 정확도 (KCC 제1저자)</div></div>
+    <div class="stat"><div class="n">30분</div><div class="l">소셜 로그인 장애 자동 탐지 상한 (전엔 사용자 문의로 인지)</div></div>
   </div>
 </header>
+
+<!-- ================= SEAMSPACE FAMILY ================= -->
+<section>
+  <div class="sec-head">
+    <h2>Seamspace Family — 신규 사업 기획부터 부모앱 React 재구현까지</h2>
+    <span class="meta">2026.04 – 2026.09 · 테바소프트 · Django + Flutter → React/TS</span>
+  </div>
+  <p class="sec-sub">초등학생 정서 케어 서비스(사용자 수만 명)의 확장으로 기획한 가족 앱. 자녀는 기존 학생앱으로 일기를 쓰고, 부모는 부모앱에서 자녀의 마음날씨와 가족 피드를 봅니다. 기획 담당자 없이 개발자인 제가 리서치부터 맡았고, 방향이 세 번 바뀌는 동안 코드가 아니라 설계를 이월했습니다.</p>
+  <div class="roleline"><b>담당:</b> 리서치·방향 후보 4안 비교·대표 보고서(6쪽) → 요구사항·MVP 스펙·ERD → 독립 프로토타입(Django + Flutter 7화면) → 테스트 서버 격리 스택 구축 → 운영 저장소 통합 → 부모앱 React 재구현 → AI '오늘의 질문'. 디자이너·개발팀·대표와 조율. 구현은 AI 페어 프로그래밍, 결정(피벗·재구현·폐지)과 검증은 직접.</div>
+  <div class="chips">
+    <span class="chip">Django 5.2 · Celery</span><span class="chip">MySQL · Redis</span><span class="chip">Flutter</span><span class="chip">React 18 · TypeScript · Vite</span><span class="chip">TanStack Query · recharts</span><span class="chip">nginx · systemd · Cloudflare</span><span class="chip">OpenAI API</span>
+  </div>
+  <div class="stories">
+    <div class="story">
+      <div class="tag">Decision 01 · 레거시에 부수지 않고 얹기</div>
+      <h3>수만 줄 모놀리스에 격리된 도메인을, 앱 수정 0으로 연결하기</h3>
+      <p class="flow"><b>상황</b> — 운영 백엔드는 로직이 한 모듈에 몰린 대형 모놀리스라 앱 로드만으로 무거운 외부 의존이 임포트돼 로컬 테스트조차 어려웠고, 학생앱 저장소는 다른 팀 소관. <b>결정</b> — 모놀리스를 존중할 제약으로 두고 <code>family</code> 앱을 격리 신설, 모델만 로드하는 스텁 설정으로 무거운 임포트를 차단. 자녀 계정 통합은 학생앱을 고치지 않고 <b>서버가 기존 응답에 부모 설정값을 갈아끼우는 어댑터</b>로 풀었습니다. 대표와 개발팀이 직접 확인할 수 있도록 사내 테스트 서버에 API·학생앱·부모앱 3종을 운영 DB·Redis와 완전히 분리해 올리고 systemd로 자동 복구를 확인.</p>
+      <p class="result">→ 기존 코드 수정 초기 3줄, 타 팀 저장소 정적분석 신규 이슈 0건, 앱 수정 0. 격리 스택을 세우며 드러난 암묵적 의존 8건은 트러블슈팅 사례집으로.</p>
+    </div>
+    <div class="story">
+      <div class="tag">Decision 02 · 프라이버시를 서버 계약으로</div>
+      <h3>부모가 볼 수 있는 것은 자녀가 정한다 — 회귀 테스트로 고정</h3>
+      <p class="flow"><b>상황</b> — 부모가 자녀의 일기를 보는 구조는 그대로 만들면 감시가 됩니다. <b>결정</b> — 공개범위 3단계(전문/요약/비밀)를 직렬화 단계에서 강제. 비밀 글은 응답에 아예 없고(감정 점수 같은 파생 데이터까지), 요약은 serializer 마스킹, 남의 것은 404. 부모가 자녀의 공개범위를 대신 바꿀 수 없다는 규칙은 회귀 테스트로 고정. 저장이 비동기 파이프라인이라 저장 응답에 id가 없는 문제는, id가 처음 생기는 폴링 시점에 <b>보호적 기본값으로 수렴하는 fire-and-forget 훅</b>으로. 같은 백엔드라도 토큰 수명은 데이터 민감도에 맞춰 단기 액세스 + 리프레시 회전으로 재평가.</p>
+      <p class="result">→ 신뢰 규칙이 UI 문구가 아니라 데이터가 나가는 마지막 관문에서 지켜짐. family 백엔드 테스트 111건.</p>
+    </div>
+    <div class="story">
+      <div class="tag">Decision 03 · 내가 만든 것을 버리는 결정</div>
+      <h3>부모앱을 React로 다시 만들고, 가족톡방 2,200줄을 폐지하다</h3>
+      <p class="flow"><b>상황</b> — 부모앱(Flutter)은 작성 앱보다 어른용 조회 대시보드(교사웹, React)에 가까웠고, 제가 만든 가족톡방은 기존 공유이야기와 겹쳤습니다. <b>결정</b> — 8월 18일, 부모앱을 React 18 + TypeScript로 재구현(백엔드 무변경, Flutter 원본은 스펙·롤백 경로로 보존)하고 톡방은 폐지. Flutter 62파일 14,475줄을 전수 인벤토리해 포팅 대상 58파일을 정하고, 디자인 토큰을 CSS 변수로, API 경로를 상수로, 401이면 refresh 한 번 재시도하는 클라이언트를 만든 뒤 홈 8섹션·일기 상세·감정 달력·리포트·알림함·마이페이지·가족 피드를 이식.</p>
+      <p class="result">→ 이틀 만에 전 화면 이식, tsc·oxlint 0, 테스트 서버에 올림. 프로토타입의 가치는 코드가 아니라 "이 설계가 동작한다"는 증거였습니다.</p>
+    </div>
+    <div class="story">
+      <div class="tag">Decision 04 · 프롬프트를 실측으로 고치기</div>
+      <h3>AI '오늘의 질문' — 안전 판정을 먼저, 모델은 나중에</h3>
+      <p class="flow"><b>상황</b> — 자녀의 최근 일기로 부모용 대화 스타터를 만드는 기능(gpt-4o-mini). 첫 버전은 요약공개로 가린 일기의 내용을 질문이 되풀이해 마스킹을 우회했고, 영어 일기에 한국어로 답했습니다. <b>결정</b> — 11사례×2회 실측으로 세 번 고쳤습니다. 한 줄 지시 → 안전 판정을 먼저 하는 2단계 JSON → 언어 규칙 분기, <b>고위험 표현은 모델을 부르기 전에 규칙으로 SKIP</b>, 일기의 구체어를 되풀이하면 1회 재생성 후 SKIP. 24시간 만료, 질문이 없으면 카드를 숨김.</p>
+      <p class="result">→ 위험 유형 5종 전부 SKIP, 영어·스페인어 정상. 남은 약점(설렘 일기 과잉 SKIP)은 안전 쪽 실패라 수용. 테스트 12종 추가.</p>
+    </div>
+  </div>
+  <p class="note">상태: 운영 배포 전입니다. 사내 테스트 서버에 올려 대표와 개발팀이 확인하는 단계까지 만들고 인수인계했습니다. 서비스 수치는 내부 집계라 규모로만 적었습니다.</p>
+</section>
 
 <!-- ================= ATRION ================= -->
 <section>
@@ -141,7 +188,7 @@ footer{margin-top:80px; padding-top:22px; border-top:1px solid var(--line); font
     <span class="meta">2025.06 – 2025.12 · 외주 프로젝트 · Django REST + Vue/Nuxt</span>
   </div>
   <p class="sec-sub">아파트 사전점검부터 입주 AS까지, 하자 접수 데이터를 현장·동·세대 단위로 분석하는 B2B 시스템. 아래 화면은 실제 운영 중인 서비스입니다 (게재 허가 완료).</p>
-  <div class="roleline"><b>담당:</b> 모니터링 대시보드(현장분석·하자분석·세대분석) 및 PPT 보고서 자동생성을 <b>요구사항 분석 → DB 스키마 → API → 프론트까지 단독 풀스택</b>으로 구축. 고객의 소리 게시판 풀스택, Azure Custom Vision 하자 이미지 자동 분류 연동. (백엔드 커밋 96건·PR 50여 건, 프론트 커밋 170건)</div>
+  <div class="roleline"><b>담당:</b> 모니터링 대시보드(현장분석·하자분석·세대분석)와 PPT 보고서 자동생성을 <b>요구사항 분석 → DB 스키마 → API → 프론트까지 단독 풀스택</b>으로 구축. 고객의 소리 게시판 풀스택, Azure Custom Vision 하자 이미지 자동 분류 연동. (테이블 약 35개, 백엔드 커밋 96건·PR 50여 건, 프론트 커밋 170건)</div>
   <div class="chips">
     <span class="chip">Vue.js · Nuxt.js</span><span class="chip">Django REST Framework</span><span class="chip">PostgreSQL</span><span class="chip">Celery</span><span class="chip">python-pptx</span><span class="chip">Chart.js</span><span class="chip">Azure Custom Vision</span>
   </div>
@@ -171,48 +218,22 @@ footer{margin-top:80px; padding-top:22px; border-top:1px solid var(--line); font
 
   <div class="stories">
     <div class="story">
-      <div class="tag">Decision 01 · 보고서 자동화</div>
+      <div class="tag">Decision 05 · 보고서 자동화</div>
       <h3>실패율 30%의 PPT 보고서를 "생성 버튼"으로 만들기</h3>
       <p class="flow"><b>상황</b> — 현장 담당자가 수작업으로 만들던 주간 보고서를 시스템이 생성하도록 전환했으나, 초기 구현은 렌더링 타임아웃으로 10건 중 3건이 실패. <b>고민</b> — 차트 이미지를 프론트에서 캡처할지, 서버에서 그릴지. <b>결정</b> — 서버 측에서 Chart.js를 html-to-image로 렌더링하고 python-pptx로 조립하되, 생성 자체를 <b>Celery 비동기 태스크</b>로 분리해 요청-응답에서 떼어냄. 동시 생성 요청도 큐에서 직렬화.</p>
-      <p class="result">→ 실패율 30% → 0%, 생성시간 10초 → 3초. 사전방문·전수검사·차트생성 보고서 3종으로 확장. <span style="font-weight:400; color:var(--muted)">(구조 재현 데모: <a href="https://github.com/EunhoRoh/pptx-report-pipeline-demo">pptx-report-pipeline-demo</a> — 회사 코드 없이 새로 작성)</span></p>
+      <p class="result">→ 실패율 30% → 0%, 생성시간 10초 → 3초. 사전방문·전수검사·차트생성 보고서 3종으로 확장. <span>(구조 재현 데모: <a href="https://github.com/EunhoRoh/pptx-report-pipeline-demo">pptx-report-pipeline-demo</a> — 회사 코드 없이 새로 작성)</span></p>
     </div>
     <div class="story">
-      <div class="tag">Decision 02 · 쿼리 최적화</div>
+      <div class="tag">Decision 06 · 쿼리 최적화</div>
       <h3>느린 대시보드의 원인을 ORM 패턴에서 찾다</h3>
-      <p class="flow"><b>상황</b> — 세대 수가 많은 현장에서 대시보드 API가 수 초씩 걸림. <b>고민</b> — 캐시를 붙일지, 쿼리를 고칠지. <b>결정</b> — 슬로우쿼리 로그로 병목을 특정해 <b>복합 인덱스(idx_site_dong_ho_phase)를 직접 추가</b>하고, 루프 안에서 반복 조회하던 <code>_pre</code> 패턴(N+1)을 annotate와 사전 캐싱으로 교체. 임시방편(캐시)보다 근본 원인(접근 패턴)을 먼저 제거.</p>
+      <p class="flow"><b>상황</b> — 세대 수가 많은 현장에서 대시보드 API가 수 초씩 걸림. <b>고민</b> — 캐시를 붙일지, 쿼리를 고칠지. <b>결정</b> — 슬로우쿼리 로그로 병목을 특정해 <b>복합 인덱스(현장·동·호·단계)를 직접 추가</b>하고, 루프 안에서 반복 조회하던 패턴(N+1)을 GROUP BY 집계와 사전 캐싱으로 교체. 임시방편(캐시)보다 근본 원인(접근 패턴)을 먼저 제거.</p>
       <p class="result">→ 현장 규모와 무관하게 일정한 응답시간 확보. 이 경험이 이후 38,230명 배치 N+1 진단으로 이어짐.</p>
     </div>
     <div class="story">
-      <div class="tag">Decision 03 · AI 연동</div>
+      <div class="tag">Decision 07 · AI 연동</div>
       <h3>하자 이미지 분류 — 모델을 만들지 않고 문제를 풀기</h3>
-      <p class="flow"><b>상황</b> — 접수된 하자 사진을 사람이 공종별로 분류. <b>고민</b> — 자체 모델 학습 vs 클라우드 서비스. 데이터 규모와 일정을 고려하면 자체 학습은 과투자. <b>결정</b> — <b>Azure Custom Vision</b>을 연동해 접수 이미지를 자동 분류하고, 확신도가 낮은 건만 사람이 확인하는 구조로 실서비스에 적용.</p>
+      <p class="flow"><b>상황</b> — 접수된 하자 사진을 사람이 공종별로 분류. <b>고민</b> — 자체 모델 학습 vs 클라우드 서비스. 데이터 규모와 일정을 고려하면 자체 학습은 과투자. <b>결정</b> — <b>Azure Custom Vision</b>을 연동해 접수 이미지를 자동 분류하는 구조로 실서비스에 적용.</p>
       <p class="result">→ 분류 수작업 제거. "모델을 직접 학습한 경험(BCI 연구)"과 "외부 모델을 서비스에 통합한 경험"을 모두 보유하게 됨.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ================= HEALTHCHECK ================= -->
-<section>
-  <div class="sec-head">
-    <h2>서비스 헬스체크 이중 봇</h2>
-    <span class="meta">2025.03 – 운영 중 · 대폭 확장 2026.06 · Python + Docker + Telegram</span>
-  </div>
-  <p class="sec-sub">운영 인프라 <b>외부에서</b> 실제 사용자 시나리오(로그인→조회→작성)를 그대로 재현하는 모니터링 봇 2기. 컨테이너를 완전히 분리해 감시 대상과 운명을 같이하지 않도록 설계했습니다. 8일+ 무중단 운영 중.</p>
-  <div class="chips">
-    <span class="chip">Python 3.11</span><span class="chip">threading</span><span class="chip">Docker</span><span class="chip">Telegram Bot API</span><span class="chip">Google OAuth 2.0 (refresh_token)</span><span class="chip">PyYAML</span>
-  </div>
-  <div class="stories">
-    <div class="story">
-      <div class="tag">Decision 04 · 비대칭 타임아웃 설계</div>
-      <h3>"느리다"만 알던 피크시간을 정량 측정으로</h3>
-      <p class="flow"><b>상황</b> — 등교 시간대(08:30~09:00) Celery 적체로 일기 생성이 1~3분까지 늘어나는데, 봇의 12초 타임아웃으로는 "실패"만 찍히고 실제 소요시간을 알 수 없었음. 게다가 다음 사이클과 충돌해 알림이 30~60개씩 폭주. <b>고민</b> — 타임아웃을 늘리면 측정은 되지만 1분 주기 사이클이 무너짐. <b>결정</b> — 타임아웃 12초는 유지하고, 초과 시 <b>백그라운드 스레드로 측정을 인계</b>(3초 폴링, 최대 5분). 백엔드에서 write_diary만 Celery로 직렬화되고 로그인/조회는 아니라는 <b>비대칭을 파악</b>해, 폴링 중에는 write_diary 검사만 스스로 스킵하도록 설계.</p>
-      <p class="result">→ 피크시간 실제 응답시간을 정량 측정하면서 알림 폭주 0건. 모니터링 주기와 측정 심도를 맞바꾸지 않는 구조.</p>
-    </div>
-    <div class="story">
-      <div class="tag">Decision 05 · 사고 재발 방지</div>
-      <h3>소셜 로그인 장애, "사용자 문의"에서 "30분 내 자동 탐지"로</h3>
-      <p class="flow"><b>상황</b> — 과거 운영 .env의 GOOGLE_CLIENT_ID 누락으로 구글 로그인이 전면 실패했는데, 사용자 문의로만 인지한 사고가 있었음. <b>결정</b> — refresh_token 기반으로 <b>Google SSO를 두 GCP 프로젝트에서 30분마다 자동 검증</b>하는 Bot B를 신설. refresh_token은 백엔드가 쓰는 client_id로 발급해야 aud 검증을 통과한다는 점, OAuth consent가 Testing이면 7일 만료된다는 점 등 함정을 사전에 해결. Provider 추상화로 Apple 등 확장 구조 확보.</p>
-      <p class="result">→ 동일 유형 장애의 탐지 시간 상한이 30분으로 고정. 계정은 YAML 데이터화, 비밀은 env 분리로 유지보수 비용 최소화.</p>
     </div>
   </div>
 </section>
@@ -223,13 +244,58 @@ footer{margin-top:80px; padding-top:22px; border-top:1px solid var(--line); font
     <h2>SLM 위기판정 — AI 모델을 실서비스에 통합</h2>
     <span class="meta">정부 과제 (DICIA · 한서대 협력) · Qwen2-7B + LoRA · 실서비스 운영</span>
   </div>
-  <p class="sec-sub">협력 연구팀이 학습한 위기판정 SLM을 학생 멘탈케어 서비스의 응급 대응 파이프라인에 통합해 상용 운영한 프로젝트. 모델 학습·평가는 한서대 산학연구팀, <b>서비스 통합과 검증 체계 설계는 본인</b>이 담당했습니다.</p>
+  <p class="sec-sub">협력 연구팀이 학습한 위기판정 SLM을 학생 정서 케어 서비스의 응급 대응 파이프라인에 통합해 상용 운영한 프로젝트. 모델 학습·평가는 한서대 산학연구팀, <b>서비스 통합과 검증 체계 설계는 본인</b>이 담당했습니다.</p>
   <div class="stories">
     <div class="story">
-      <div class="tag">Decision 07 · AI 서비스 통합</div>
+      <div class="tag">Decision 08 · AI 서비스 통합</div>
       <h3>위험을 놓치지 않는 통합 — 게이트, fail-safe, 공인시험</h3>
-      <p class="flow"><b>설계</b> — 모든 일기를 SLM에 보내는 대신 GPT 감정점수 9점 이상만 통과시키는 <b>1차 게이트</b>로 호출량을 제어하고, 위험군만 SLM 서버에 HTTP로 위기단계 분류 요청. 호출 실패 시에는 <b>응급으로 간주하는 fail-safe</b> — "놓치는 것보다 과잉 대응이 낫다"를 코드로 구현. 응급 판정 시 학생에게 13개 언어별 핫라인을 동기 노출, 교사에게 암호화 알림. 백엔드에 ML 의존성 없음(HTTP로 라벨만) — 모델이 교체돼도 서비스는 무변경.</p>
-      <p class="result">→ 실서비스 운영 중. 공인시험(DICIA) 제출용 정확도 산식·한/영 라벨 동의어 판정 규칙·시험 재현 절차까지 <b>검증 체계를 직접 설계</b>.</p>
+      <p class="flow"><b>설계</b> — 모든 일기를 SLM에 보내는 대신 GPT 감정점수 9점 이상만 통과시키는 <b>1차 게이트</b>로 호출량을 제어하고, 위험군만 SLM 서버에 HTTP로 위기단계 분류 요청(timeout 10초). 호출 실패 시에는 <b>응급으로 간주하는 fail-safe</b> — "놓치는 것보다 과잉 대응이 낫다"를 코드로 구현. 응급 판정 시 학생에게 13개 언어별 핫라인을 동기 노출, 교사에게 암호화 알림은 비동기. 백엔드에 ML 의존성 없음(HTTP로 라벨만) — 모델이 교체돼도 서비스는 무변경.</p>
+      <p class="result">→ 실서비스 운영, 누적 2,284건 처리(내부 집계). 공인시험(DICIA) 제출용 정확도 산식·한/영 라벨 동의어 판정 규칙·시험 재현 절차·SHA-256 무결성 고정까지 <b>검증 체계를 직접 설계</b>(확인서 4회 개정).</p>
+    </div>
+  </div>
+  <ul>
+    <li><b>ChatGPT API 기반 AI 성격 챗봇 11종</b> 운영(API 키 로테이션, aiohttp 비동기, 언어 감지) — 일기 분석·채팅 프롬프트 저장소(언어별 파일, Gemini 폴백)를 관리하며 변경은 테스트 서버 확인 후 반영.</li>
+  </ul>
+</section>
+
+<!-- ================= HEALTHCHECK ================= -->
+<section>
+  <div class="sec-head">
+    <h2>서비스 헬스체크 이중 봇</h2>
+    <span class="meta">2025.03 – 2026.09 · 대폭 확장 2026.06 · Python + Docker + Telegram</span>
+  </div>
+  <p class="sec-sub">운영 인프라 <b>외부에서</b> 실제 사용자 시나리오(로그인→조회→작성)를 그대로 재현하는 모니터링 봇 2기. 컨테이너를 완전히 분리해 감시 대상과 운명을 같이하지 않도록 설계했습니다.</p>
+  <div class="chips">
+    <span class="chip">Python 3.11</span><span class="chip">threading</span><span class="chip">Docker</span><span class="chip">Telegram Bot API</span><span class="chip">Google OAuth 2.0 (refresh_token)</span><span class="chip">PyYAML</span>
+  </div>
+  <div class="stories">
+    <div class="story">
+      <div class="tag">Decision 09 · 비대칭 타임아웃 설계</div>
+      <h3>"느리다"만 알던 피크시간을 정량 측정으로</h3>
+      <p class="flow"><b>상황</b> — 등교 시간대(08:30~09:00) Celery 적체로 일기 생성이 1~3분까지 늘어나는데, 봇의 12초 타임아웃으로는 "실패"만 찍히고 실제 소요시간을 알 수 없었음. 게다가 다음 사이클과 충돌해 알림이 30~60개씩 폭주. <b>고민</b> — 타임아웃을 늘리면 측정은 되지만 1분 주기 사이클이 무너짐. <b>결정</b> — 타임아웃 12초는 유지하고, 초과 시 <b>백그라운드 스레드로 측정을 인계</b>(3초 폴링, 최대 5분). 백엔드에서 write_diary만 Celery로 직렬화되고 로그인/조회는 아니라는 <b>비대칭을 파악</b>해, 폴링 중에는 write_diary 검사만 스스로 스킵하도록 설계.</p>
+      <p class="result">→ 피크시간 실제 응답시간을 정량 측정하면서 알림 폭주 0건. 모니터링 주기와 측정 심도를 맞바꾸지 않는 구조.</p>
+    </div>
+    <div class="story">
+      <div class="tag">Decision 10 · 사고 재발 방지</div>
+      <h3>소셜 로그인 장애, "사용자 문의"에서 "30분 내 자동 탐지"로</h3>
+      <p class="flow"><b>상황</b> — 과거 운영 .env의 GOOGLE_CLIENT_ID 누락으로 구글 로그인이 전면 실패했는데, 사용자 문의로만 인지한 사고가 있었음. <b>결정</b> — refresh_token 기반으로 <b>Google SSO를 두 GCP 프로젝트에서 30분마다 자동 검증</b>하는 Bot B를 신설. refresh_token은 백엔드가 쓰는 client_id로 발급해야 aud 검증을 통과한다는 점, OAuth consent가 Testing이면 7일 만료된다는 점 등 함정을 사전에 해결. Provider 추상화로 Apple 등 확장 구조 확보.</p>
+      <p class="result">→ 동일 유형 장애의 탐지 시간 상한이 30분으로 고정. 계정은 YAML 데이터화, 비밀은 env 분리로 유지보수 비용 최소화.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= N+1 ================= -->
+<section>
+  <div class="sec-head">
+    <h2>성능 최적화 — 38,230명 배치의 N+1 진단</h2>
+    <span class="meta">2026.03 설계 → 2026.07 최적화 버전 운영 배포</span>
+  </div>
+  <div class="stories">
+    <div class="story">
+      <div class="tag">Decision 11 · 근본 원인 추적</div>
+      <h3>로그 한 줄 없이 죽는 배치, OOM에서 N+1까지</h3>
+      <p class="flow"><b>상황</b> — 뱃지 승급 배치가 38,230명 처리 중 절반쯤에서 에러 로그 없이 중단. <b>추적</b> — "Start만 찍히고 에러가 없다" → 프로세스 강제 종료 → OOM 가설 → 코드 리뷰로 유저마다 행성 데이터 전체를 재쿼리해 리스트에 적재하는 N+1 + 메모리 누적 패턴 발견(ForkPoolWorker OOM). <b>설계</b> — ① 행성별 1회 쿼리 + 경험치순 정렬 ② status_map 사전 판정 ③ iterator(chunk_size=500) + 사전 로드의 3단계로 재설계.</p>
+      <p class="result">→ 쿼리 38,230회 → 행성 수(5~6회)로 재설계, 최적화 버전 운영 배포(2026.07). <span>(같은 패턴 재현 데모: <a href="https://github.com/EunhoRoh/django-n-plus-one-lab">django-n-plus-one-lab</a> — 5,000명 더미 실측: 쿼리 5,998→11회, 379초→0.24초. 데모 재현치이며 운영 측정치는 아닙니다)</span></p>
     </div>
   </div>
 </section>
@@ -237,66 +303,65 @@ footer{margin-top:80px; padding-top:22px; border-top:1px solid var(--line); font
 <!-- ================= QA ================= -->
 <section>
   <div class="sec-head">
-    <h2>QA 테스트 설계 &amp; 자동화</h2>
-    <span class="meta">2025.03 – 현재 · Flutter E2E 자동화 단독 구축</span>
+    <h2>QA 자동화 &amp; Seam Runner</h2>
+    <span class="meta">2025.02 – 2026.09 · 학생앱 Flutter E2E·API 자동화 단독 구축</span>
   </div>
   <ul>
-    <li><b>학생용 서비스 E2E 자동화 단독 구축</b> — QA 워크북 TC 1,005건을 운영하며 <b>405건 자동화 완료</b>(+101건 구현 중). Robot(POM) 패턴 + 시나리오 43개, 전체 스위트 587 step을 약 19분에 회귀. 11개 언어 variant로 i18n 회귀까지 검증.</li>
-    <li><b>플레이키를 구조로 제거</b> — 무한 애니메이션 탓에 pumpAndSettle이 멈추는 문제를 데드라인 폴링 대기로 대체하고, 시나리오 실패 시 자가 복구(홈 복귀)로 한 건의 실패가 스위트 전체를 죽이지 않게 격리.</li>
-    <li><b>재현 가능한 리포트</b> — 브라우저 XHR을 가로채 request/response를 step별로 첨부하는 HTML 리포트 + Google Sheets 자동 집계(원커맨드 실행). 프로덕션 코드 수정 0으로 구현.</li>
-    <li>팀 초기 자동화 틀(Playwright·Appium·GitHub Actions CI 스캐폴드, 2025.02)도 구축 — 이후 웹(Playwright) 자동화는 별도 담당자가 운영, 본인은 Flutter E2E 전담.</li>
+    <li><b>TC 1,511건 워크북 운영, 882건 자동화</b> — Robot(POM) 패턴 + 시나리오 49개, 15개 언어·테마 variant 회귀, 학생·교사·관리자·무료·유료 계정별 스위트. 9월 릴리스 게이트: 관리자 57건 · 전체 650건 · API 320건.</li>
+    <li><b>플레이키를 구조로 제거</b> — 무한 애니메이션 탓에 pumpAndSettle이 멈추는 문제를 데드라인 폴링 대기로 대체하고, 시나리오 실패 시 자가 복구(홈 복귀)로 한 건의 실패가 스위트 전체를 죽이지 않게 격리. 판정은 exit code가 아니라 시나리오 요약 마커로.</li>
+    <li><b>재현 가능한 리포트</b> — 브라우저 XHR을 가로채 request/response를 step별로 첨부하는 HTML 리포트 + Google Sheets 자동 집계. 프로덕션 코드 수정 0으로 구현.</li>
+    <li><b>API 자동화 러너(Node, 레시피 90종)</b>를 신설해 브라우저 없이 API 계약을 점검. 2026년 9월 포인트 정산 검증에서 <b>결함 52건</b>을 등급(실측/코드검토)·재현 로그·소스 위치와 함께 기록하고, 보안·심각 등급 5건은 따로 묶어 개발팀에 전달.</li>
+    <li><b>Seam Runner</b> — 팀원이 브라우저에서 테스트와 화면 캡쳐를 골라 실행하는 웹 런처(Node, 의존성 0, 큐)를 사내 서버 systemd로 운영, Cloudflare Access로 회사 이메일 인증. 홍보·매뉴얼용 언어별 화면 캡쳐 시스템과 SSO 일일 감시 타이머 포함.</li>
+    <li>팀 초기 자동화 틀(Playwright·Appium·GitHub Actions CI 스캐폴드, 2025.02)도 구축. 교사웹(React) Playwright 자동화는 전임자가 만들었고 2026.08부터 인수·유지. 퇴사 전 인수인계 문서 8편.</li>
   </ul>
 </section>
 
-<!-- ================= N+1 ================= -->
+<!-- ================= SEALO ================= -->
 <section>
   <div class="sec-head">
-    <h2>성능 최적화 — 38,230명 배치의 N+1 진단</h2>
-    <span class="meta">2026.03 설계 → 2026.07 최적화 버전 운영 배포 완료</span>
+    <h2>Sealo 🦭 — 물범이 도장을 찍어 주는 루틴 앱</h2>
+    <span class="meta">2026.07 · 1인 풀스택 · Spring Boot 4.1 + React Native · <a href="https://github.com/EunhoRoh/sealo">github.com/EunhoRoh/sealo</a></span>
+  </div>
+  <p class="sec-sub">정해진 시간에 물범이 알람으로 깨우고(3단계 재알림), 해내면 도장을 쾅 찍어 주고(Lottie·햅틱·효과음), 모은 조개로 물범을 꾸미는 루틴 앱. 회사 실무가 Django라 <b>Spring Boot를 코드로 증명하고 싶어서</b> 3주 동안 만들었습니다. iOS·Android·Web을 한 코드로.</p>
+  <div class="roleline"><b>담당:</b> 아이디어 선정(규제 검토)·수익화 리서치 → 백엔드(도메인 7개, API 24개, 통합 테스트 29건) → 앱(알람·집중 모드·테마 플랜·AI 플랜) → 결정로그 27건·트러블슈팅 7건 문서화. 혼자 했고, 구현은 AI 페어 프로그래밍으로 가속했습니다.</div>
+  <div class="chips">
+    <span class="chip">Spring Boot 4.1 · Java 21</span><span class="chip">JPA · Spring Security</span><span class="chip">PostgreSQL 16</span><span class="chip">React Native (Expo)</span><span class="chip">TypeScript · TanStack Query</span><span class="chip">expo-notifications · Lottie</span>
   </div>
   <div class="stories">
     <div class="story">
-      <div class="tag">Decision 06 · 근본 원인 추적</div>
-      <h3>로그 한 줄 없이 죽는 배치, OOM에서 N+1까지</h3>
-      <p class="flow"><b>상황</b> — 뱃지 승급 배치가 38,230명 처리 중 절반쯤에서 에러 로그 없이 중단. <b>추적</b> — "Start만 찍히고 에러가 없다" → 프로세스 강제 종료 → OOM 가설 → 코드 리뷰로 유저마다 행성 데이터 전체를 재쿼리해 리스트에 적재하는 N+1 + 메모리 누적 패턴 발견(ForkPoolWorker OOM). <b>설계</b> — ① 행성별 1회 쿼리 + 경험치순 정렬 ② status_map 사전 판정 ③ iterator(chunk_size=500) + 사전 로드의 3단계로 재설계.</p>
-      <p class="result">→ 쿼리 38,230회 → 행성 수(5~6회)로 재설계, <b>최적화 버전 운영 배포 완료(2026.07)</b>. <span style="font-weight:400; color:var(--muted)">(같은 패턴 재현 데모: <a href="https://github.com/EunhoRoh/django-n-plus-one-lab">django-n-plus-one-lab</a> — 5,000명 더미 실측: 쿼리 5,998→11회, 379초→0.24초)</span></p>
+      <div class="tag">Decision 12 · 구조로 예방</div>
+      <h3>회사에서 사후에 찾은 N+1을, 여기선 처음부터 생기지 않게</h3>
+      <p class="flow"><b>상황</b> — 회사에서 38,230명 배치가 N+1로 메모리가 터지는 걸 사후에 추적해야 했습니다. 개인 프로젝트에선 같은 일을 리뷰가 아니라 구조로 막고 싶었습니다. <b>결정</b> — 전 관계 LAZY + 전역 batch fetch, 조회 화면은 DTO/id 프로젝션으로 "오늘의 루틴 + 완료 여부"는 <b>쿼리 2번</b>(루틴 목록 + 오늘 도장 id 집합), 캘린더는 <b>group by 1번</b>. 소유권 검증은 <code>findByIdAndMemberId</code> 조건으로 프록시를 건드리지 않고, OSIV는 끔. 하루 한 번 도장은 <code>unique(routine_id, stamp_date)</code>로 DB가 막습니다. 착용 아이템 전환은 JPQL 벌크 UPDATE 1회 — <code>clearAutomatically</code>가 앞서 조회한 엔티티를 떼어 내는 함정은 리뷰에서 잡았습니다.</p>
+      <p class="result">→ 핵심 화면 쿼리 수가 데이터 양과 무관하게 고정. 경험이 설계 원칙(docs/07 개발원칙)으로 이어진 사례.</p>
+    </div>
+    <div class="story">
+      <div class="tag">Decision 13 · 요구를 먼저, 수단은 나중에</div>
+      <h3>주식 앱을 접고, FCM을 빼고, LLM은 인터페이스 뒤로</h3>
+      <p class="flow"><b>아이디어</b> — 첫 후보는 "1,000원에 AI 추천 종목 3개" 앱이었는데, 대가를 받는 종목 추천은 유사투자자문업 신고 대상이라 접었습니다. <b>알림</b> — FCM 대신 기기 로컬 알림. 루틴 시간은 기기가 이미 아는 정보라 서버가 보낼 이유가 없었고, Firebase 프로젝트·토큰 관리·서버 스케줄러가 빠졌습니다. 동기화는 전부 취소 후 재등록으로 멱등하게. <b>AI 플랜</b> — 생성기 인터페이스를 먼저 두고 룰 엔진으로 6개 테마를 내보냈습니다. LLM은 구현체만 바꾸면 붙습니다(아직 연결 안 함).</p>
+      <p class="result">→ 서버 인프라 세 가지 없이 알림 완성, AI 기능은 원가 0으로 먼저 검증. "만들 수 있는가"보다 "출시할 수 있는가"를 먼저 물었습니다.</p>
     </div>
   </div>
+  <p class="note">정직하게: 3주 동안 AI 플랜 단계까지 만들었고 스토어 배포는 하지 않았습니다(Expo로 실행). Spring Boot 4로 올라가며 겪은 MockMvc 모듈 분리·Jackson 3 전환은 Gradle 캐시의 jar를 열어 확인했습니다.</p>
 </section>
 
-<!-- ================= NEW SERVICE (CONFIDENTIAL) ================= -->
+<!-- ================= RESEARCH / OTHERS ================= -->
 <section>
-  <div class="sec-head">
-    <h2>신규 서비스 확장 — 기획부터 운영 저장소 통합까지</h2>
-    <span class="meta">2026 상반기 – 현재 · 비공개 프로젝트 · 격리 테스트 환경 상시 구동</span>
-  </div>
-  <p class="sec-sub">미공개 건이라 제품 상세는 밝힐 수 없지만, 기획(사업 판단에 따른 방향 전환 2회) → 독립 풀스택 프로토타입 → 사내 신규 도메인 구현으로 이어진 프로젝트입니다. 상세는 면접에서 말씀드릴 수 있습니다.</p>
-  <ul>
-    <li><b>레거시 모놀리스에 "부수지 않고 얹기"</b> — 신규 도메인을 격리된 앱으로 신설해 <b>+3,086줄을 추가하는 동안 기존 코드 삭제는 3줄</b>. 병합 안전성을 구조로 만들고 수치로 증명. 개발 루프에서는 무거운 임포트를 스텁으로 차단, 타 팀 저장소 컨벤션 100% 준수(신규 정적분석 이슈 0건).</li>
-    <li><b>민감 개인 기록의 프라이버시를 서버 계약으로</b> — 공개범위 3단계(전체/요약/비공개)를 직렬화 원천에서 강제하고 소유권 위반은 404로 응답. 규칙은 <b>회귀 테스트 47건</b>으로 고정.</li>
-    <li><b>실패 모드까지 설계</b> — 비동기 파이프라인의 확정 시점에 후속 속성을 붙이는 fire-and-forget 훅. 기본값이 보호적이라 훅이 실패해도 안전한 쪽으로 수렴.</li>
-    <li><b>격리 테스트 스택 구축·상시 구동</b> — 운영과 완전 분리된 테스트 환경(DB·큐·프로세스 분리)에 배포해 자동 복구까지 실증. 모든 인프라 값을 환경변수로 설계(12-Factor)해 클라우드 이행 비용까지 선반영.</li>
-  </ul>
-</section>
-
-<!-- ================= SIDE / RESEARCH ================= -->
-<section>
-  <div class="sec-head"><h2>사이드 프로젝트 &amp; 연구</h2></div>
+  <div class="sec-head"><h2>연구 &amp; 공개 데모</h2></div>
   <div class="cards2">
-    <div class="card">
-      <div class="period">2026.07 – 진행 중 · 1인 풀스택 · <a href="https://github.com/EunhoRoh/sealo">github.com/EunhoRoh/sealo</a></div>
-      <h3 style="margin-top:6px">Sealo 🦭 — 물범이 도장을 쾅 찍어주는 루틴 앱</h3>
-      <p style="margin:8px 0 0; font-size:14.5px">시간이 되면 물범이 따르릉 깨우고(3단계 재알림), 해내면 <b>도장 쾅</b>(Lottie+햅틱+효과음)과 조개 보상 — 모은 조개로 물범을 꾸미는 리텐션 루프를 iOS·Android·Web 단일 코드베이스로 구현한 1인 풀스택 앱(Spring Boot 4.1 + RN). 테마 플랜 6종·AI 플랜 위저드·집중 모드(폰 잠금)까지 동작 — REST API 30+, 통합 테스트 29건, 결정로그 27건. <b>N+1은 구조로 방지</b>(전 관계 LAZY·DTO 프로젝션·OSIV off), AI 플랜은 인터페이스+룰 엔진으로 선출시해 LLM은 구현체 교체만으로 연동(현재 미연동) — 회사에서 진단한 문제를 개인 프로젝트에선 "처음부터 생기지 않게" 설계한 사례.</p>
-    </div>
-    <div class="card">
-      <div class="period">2026.07 – 진행 중 · 1인 풀스택 · <a href="https://github.com/EunhoRoh/Itda">github.com/EunhoRoh/Itda</a></div>
-      <h3 style="margin-top:6px">잇다 (Itda) — 끊어진 인연에 다시 연락할 용기를 주는 앱</h3>
-      <p style="margin:8px 0 0; font-size:14.5px">오래 연락이 끊긴 사람 중 '오늘의 한 사람'을 추천하고, 추억 기록 → 용기 부스터(심리학 연구 카드) → 초안 작성 → 결과 기록의 <b>4단계 미션</b>이 실제 연락까지 안내하는 관계 회복 앱(Spring Boot 4.1 + RN). 전송 버튼은 의도적으로 없음 — 초안을 복사해 보내는 순간은 사용자의 몫. "안전이 화해보다 먼저"는 문구가 아니라 서버 규칙: <b>위험 관계에는 미션 생성을 409로 거부</b>하고 테스트로 검증. 오해·갈등을 AI가 양측 개별 상담으로 중재하는 <b>릴레이 중재는 설계를 마친 다음 로드맵</b>. MVP, 백엔드 테스트 11건 통과.</p>
-    </div>
     <div class="card">
       <div class="period">2021.06 – 2022.06 · 한동대 BCI 연구실 · 팀 리더</div>
       <h3 style="margin-top:6px">CNN-LSTM 심방세동 탐지 — KCC 2022 제1저자</h3>
-      <p style="margin:8px 0 0; font-size:14.5px">MIT-BIH AF DB의 RR-interval 시퀀스에 100-interval 슬라이딩 윈도우 라벨링을 적용, CNN-LSTM fusion + global max pooling으로 정확도 <b>82% → 99.45%</b>(민감도 99.75%, AUC 0.99). 모델을 직접 설계·학습·평가한 경험.</p>
+      <p>MIT-BIH AF DB의 RR-interval 시퀀스에 100-interval 슬라이딩 윈도우 라벨링을 적용, CNN-LSTM fusion + global max pooling으로 정확도 <b>82% → 99.45%</b>(민감도 99.75%, AUC 0.99). 환자 20명 학습·3명 블라인드 검증으로 일반화 확인. 모델을 직접 설계·학습·평가한 경험 — 외부 모델을 서비스에 붙인 SLM, 프롬프트를 실측으로 고친 '오늘의 질문'과 함께 세 관점을 모두 겪었습니다.</p>
+    </div>
+    <div class="card">
+      <div class="period">공개 데모 · <a href="https://github.com/EunhoRoh/django-n-plus-one-lab">django-n-plus-one-lab</a></div>
+      <h3 style="margin-top:6px">N+1 실험실 — 실무 배치 OOM 장애를 더미 데이터로 재현</h3>
+      <p>seed/bench 커맨드로 누구나 재측정할 수 있는 벤치. 쿼리 5,998→11회, 379초→0.24초, 피크 메모리 6.3→0.7MB.</p>
+    </div>
+    <div class="card">
+      <div class="period">공개 데모 · <a href="https://github.com/EunhoRoh/pptx-report-pipeline-demo">pptx-report-pipeline-demo</a></div>
+      <h3 style="margin-top:6px">차트 렌더링 → PPT 조립 → Celery 큐 파이프라인</h3>
+      <p>Atrion 보고서 자동화의 구조를 회사 코드 없이 재현. 문제→결정→근거 표, 동기/비동기 실행 비교.</p>
     </div>
   </div>
 </section>
@@ -305,19 +370,21 @@ footer{margin-top:80px; padding-top:22px; border-top:1px solid var(--line); font
 <section>
   <div class="sec-head"><h2>기술 스택</h2></div>
   <div class="stack-table">
-    <div class="stack-row"><span class="k">백엔드</span><span>Python · Django REST Framework · Celery / Spring Boot 4.x + JPA (개인 프로젝트 Sealo 실구축)</span></div>
-    <div class="stack-row"><span class="k">프론트·모바일</span><span>Vue.js 3 · Nuxt.js · React / Flutter · React Native(Expo, TypeScript) · Firebase</span></div>
-    <div class="stack-row"><span class="k">데이터베이스</span><span>PostgreSQL · MySQL · MS SQL · Firestore — 슬로우쿼리 진단, 복합 인덱스 설계</span></div>
-    <div class="stack-row"><span class="k">QA·자동화</span><span>Flutter integration_test E2E(단독 구축) · Playwright(초기 틀) · python-pptx 보고서 자동화</span></div>
-    <div class="stack-row"><span class="k">인프라·운영</span><span>Docker · Nginx · Redis · Cloudflare · NCP — 헬스체크 봇 설계·운영, 장애 대응</span></div>
-    <div class="stack-row"><span class="k">AI/ML</span><span>Azure Custom Vision(실서비스 연동) · OpenAI API·프롬프트 설계 · TensorFlow/Keras(연구) · SLM 서비스 통합</span></div>
+    <div class="stack-row"><span class="k">백엔드</span><span>Python · Django REST Framework · Celery(실무) / Java 21 · Spring Boot 4.1 · JPA · Spring Security(개인 프로젝트 Sealo)</span></div>
+    <div class="stack-row"><span class="k">프론트·모바일</span><span>React 18 · TypeScript · Vite · TanStack Query(실무, 부모앱 재구현) / Vue.js 3 · Nuxt.js(실무) / Flutter(실무) / React Native(Expo, Sealo)</span></div>
+    <div class="stack-row"><span class="k">AI</span><span>SLM 서비스 통합·공인시험 검증 체계(실무) · OpenAI API 챗봇·프롬프트 설계와 실측 개선(실무) · Azure Custom Vision(실무) · TensorFlow/Keras(연구)</span></div>
+    <div class="stack-row"><span class="k">데이터베이스</span><span>PostgreSQL · MySQL · Redis — 슬로우쿼리 진단, 복합 인덱스 설계, N+1 진단과 구조적 예방</span></div>
+    <div class="stack-row"><span class="k">QA·자동화</span><span>Flutter integration_test E2E(단독 구축) · Node API 러너 · Playwright(초기 틀·교사웹 인수) · python-pptx 보고서 자동화 · 헬스체크 봇</span></div>
+    <div class="stack-row"><span class="k">인프라·운영</span><span>Docker · Docker Compose · Nginx · SSL · Cloudflare(DNS·Tunnel·Access) · systemd · NCP — 사내 테스트 서버 격리 스택과 테스트 러너 서버를 직접 운영</span></div>
   </div>
-  <p class="note">Spring Boot는 회사 실무가 아닌 교육+개인 프로젝트 수준, LLM 플랜 기능은 아키텍처 설계 단계임을 명시합니다 — 과장 없이 검증 가능한 것만 적었습니다.</p>
+  <p class="note">과장 없이 검증 가능한 것만 적었습니다. Spring Boot와 React Native는 회사 실무가 아니라 개인 프로젝트(Sealo) 수준이고, SLM은 모델 학습이 아니라 서비스 통합입니다. 실무 코드는 전부 비공개라 구조를 재현한 데모로 대신합니다.</p>
 </section>
 
 <footer>
   <span>노은호 · deu04189@gmail.com · <a href="https://github.com/EunhoRoh">github.com/EunhoRoh</a></span>
-  <span>이 페이지를 인쇄(Ctrl+P)하면 PDF 제출본이 됩니다</span>
+  <span>2026.09 · 이 페이지를 인쇄(Ctrl+P)하면 PDF 제출본이 됩니다</span>
 </footer>
 
 </div>
+</body>
+</html>
